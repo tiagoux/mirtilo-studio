@@ -29,7 +29,7 @@ import {
   CheckCircle2,
   Clock,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+// cn import removed - not needed
 
 // --- Constants ---
 const MODELS = [
@@ -337,7 +337,6 @@ export function VideosTab() {
 
   // Generation state
   const [generating, setGenerating] = useState(false);
-  const [currentSceneIndex, setCurrentSceneIndex] = useState(-1);
   const [results, setResults] = useState<SceneResult[]>([]);
   const [statusText, setStatusText] = useState("");
 
@@ -384,7 +383,6 @@ export function VideosTab() {
 
     for (let i = 0; i < validScenes.length; i++) {
       const scene = validScenes[i];
-      setCurrentSceneIndex(i);
       setStatusText(`Gerando cena ${i + 1} de ${validScenes.length}... aguarde ~60s`);
 
       // Mark as generating
@@ -393,6 +391,7 @@ export function VideosTab() {
       );
 
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const body: any = {
           prompt: scene.prompt,
           model,
@@ -432,6 +431,7 @@ export function VideosTab() {
               : r
           )
         );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setResults((prev) =>
           prev.map((r) =>
@@ -450,10 +450,8 @@ export function VideosTab() {
     }
 
     setGenerating(false);
-    setCurrentSceneIndex(-1);
     setStatusText("");
 
-    const finalResults = results;
     const doneCount = validScenes.length;
     toast({
       title: "Geração concluída",

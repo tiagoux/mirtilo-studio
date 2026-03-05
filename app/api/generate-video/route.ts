@@ -47,9 +47,11 @@ export async function POST(req: NextRequest) {
       : undefined;
 
     // Build config
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const config: any = {
       aspectRatio: aspectRatio || "16:9",
       numberOfVideos: 1,
+      resolution: resolution || undefined,
     };
 
     if (durationSeconds) {
@@ -168,6 +170,7 @@ export async function POST(req: NextRequest) {
       videoData: videoBase64,
       mimeType: "video/mp4",
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Video generation error:", error);
     const message =

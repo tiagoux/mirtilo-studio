@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Find the inline image data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const imagePart = parts.find((part: any) => part.inlineData);
     if (!imagePart || !imagePart.inlineData) {
       return NextResponse.json(
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
       imageData: imagePart.inlineData.data,
       mimeType: imagePart.inlineData.mimeType || "image/png",
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Image generation error:", error);
     const message =

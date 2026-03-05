@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -25,7 +25,7 @@ import {
   CheckCircle2,
   Clock,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+// cn import removed - not needed
 
 // --- Constants ---
 const ASPECT_RATIOS = ["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"];
@@ -213,6 +213,7 @@ export function StillsTab() {
               : r
           )
         );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setResults((prev) =>
           prev.map((r) =>
